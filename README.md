@@ -14,6 +14,7 @@ Board de rétrospective en temps réel, thème Halloween. Pas de compte, pas de 
 - **Minuteur partagé** (3, 5, 10 ou 15 minutes) synchronisé pour toute l'équipe.
 - **Grimoire des actions** avec responsable et case à cocher.
 - **Export Markdown** du board et des actions.
+- **Bouton Réinitialiser**, avec confirmation en deux clics: efface post-its, votes, actions et minuteur pour toute l'équipe. N'importe qui ayant le lien peut l'utiliser. Les brouillons privés de chacun ne sont pas touchés.
 - **Liste des connectés** avec les noms choisis.
 - Post-its **anonymes par défaut**. Chacun peut choisir d'afficher son nom sur les siens.
 

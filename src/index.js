@@ -166,6 +166,15 @@ export class Room extends DurableObject {
         await this.ctx.storage.delete("a:" + m.id);
         break;
       }
+      case "reset": {
+        // Efface tout le board pour tout le monde (les brouillons prives restent chez chacun).
+        this.notes.clear();
+        this.votes.clear();
+        this.actions.clear();
+        this.timer = { running: false, endsAt: 0, remaining: 300000 };
+        await this.ctx.storage.deleteAll();
+        break;
+      }
       case "timer": {
         const t = this.timer;
         if (m.op === "start" && !t.running) {

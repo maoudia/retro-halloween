@@ -263,6 +263,25 @@
     }
   });
 
+  /* ---------- reinitialisation (confirmation en deux clics) ---------- */
+  var resetBtn = $("reset"), resetTimer = null;
+  function disarmReset() {
+    clearTimeout(resetTimer);
+    resetBtn.dataset.armed = "";
+    resetBtn.textContent = "Réinitialiser";
+  }
+  resetBtn.addEventListener("click", function () {
+    if (resetBtn.dataset.armed !== "1") {
+      resetBtn.dataset.armed = "1";
+      resetBtn.textContent = "Confirmer: tout effacer";
+      say("Cela efface tous les post-its, votes et actions pour toute l'équipe. Clique encore pour confirmer.", "warn");
+      resetTimer = setTimeout(function () { disarmReset(); say(""); }, 6000);
+      return;
+    }
+    disarmReset();
+    if (send({ t: "reset" })) say("Board réinitialisé pour toute l'équipe.");
+  });
+
   function renderPeers() {
     var peers = state ? state.peers : [];
     var box = $("peers");
@@ -381,6 +400,7 @@
 
   function renderAll() {
     renderNotes(); renderDrafts(); renderActions(); renderPeers(); renderTimer();
+    $("reset").disabled = !connected;
   }
 
   renderAll();

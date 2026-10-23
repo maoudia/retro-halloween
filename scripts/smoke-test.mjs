@@ -91,6 +91,21 @@ B2.ws.send("ping");
 await sleep(200);
 ok(B2.pong === true, "ping recoit pong");
 
+// 7b. reinitialisation du board par un participant
+// (A a ete deconnecte plus haut par le message trop gros: un troisieme client lance le reset)
+const C = await client("cccccccccccccccc", "Cleo");
+await sleep(300);
+C.send({ t: "reset" });
+await sleep(400);
+ok(
+  B2.last.notes.length === 0 && B2.last.actions.length === 0 && B2.last.timer.running === false && B2.last.timer.remaining === 300000,
+  "reset efface post-its, votes, actions et minuteur pour tout le monde",
+);
+C.send({ t: "note", col: "citrouilles", text: "Apres reset" });
+await sleep(300);
+ok(B2.last.notes.length === 1 && B2.last.notes[0].votes === 0, "le board accepte de nouveaux post-its apres reset, sans anciens votes");
+C.ws.close();
+
 A.ws.close(); B2.ws.close();
 
 // 8. en-tetes de securite sur la page

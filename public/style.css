@@ -76,6 +76,7 @@ select.btn { padding: 7px 8px; background: var(--ink); }
 .btn.solid { background: var(--pumpkin); border-color: var(--pumpkin); color: var(--paper-ink); font-weight: 700; }
 .btn[aria-pressed="true"] { background: var(--pumpkin); border-color: var(--pumpkin); color: var(--paper-ink); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn[data-armed="1"] { background: var(--alarm); border-color: var(--alarm); color: var(--paper-ink); font-weight: 700; }
 .status { margin: 0; min-height: 1.4em; color: var(--mist); font-size: 15px; overflow-wrap: anywhere; }
 .status[data-tone="warn"] { color: var(--pumpkin); }
 

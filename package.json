@@ -1,0 +1,15 @@
+{
+  "name": "retro-halloween",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Board de retrospective Halloween en temps reel, anonyme, sans compte",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "smoke": "node scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0",
+    "ws": "^8.18.0"
+  }
+}

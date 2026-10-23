@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Retro Halloween</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<svg class="web" viewBox="0 0 120 120" aria-hidden="true">
+  <g>
+    <path d="M0 0 L110 0 M0 0 L101.6 42.1 M0 0 L77.8 77.8 M0 0 L42.1 101.6 M0 0 L0 110"/>
+    <path d="M110 0 L101.6 42.1 L77.8 77.8 L42.1 101.6 L0 110"/>
+    <path d="M75 0 L69.3 28.7 L53 53 L28.7 69.3 L0 75"/>
+    <path d="M40 0 L37 15.3 L28.3 28.3 L15.3 37 L0 40"/>
+  </g>
+</svg>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow" id="eyebrow">Rétrospective d'équipe</p>
+    <h1>Retro Halloween</h1>
+  </header>
+
+  <section class="landing" id="landing" hidden>
+    <p class="lede">Un board de rétro en temps réel pour ton équipe. Pas de compte: le lien du board sert d'invitation, et chacun choisit son nom.</p>
+    <button class="btn solid" id="create" type="button">Créer un board</button>
+    <p class="fine">Quiconque a le lien peut participer. Les brouillons restent dans ton navigateur. Le board est effacé 24 h après la dernière activité.</p>
+  </section>
+
+  <div id="app" class="wrap" hidden>
+    <p class="lede">Écris tes post-its dans ta crypte privée, personne ne les voit. Quand l'équipe est prête, clique sur Tout publier. Ensuite, 3 votes chacun.</p>
+
+    <div class="bar">
+      <div class="timer" role="group" aria-label="Minuteur partagé">
+        <span class="clock" id="clock" role="timer">5:00</span>
+        <button class="btn" id="t-toggle" type="button">Démarrer</button>
+        <button class="btn" id="t-reset" type="button">Remise à zéro</button>
+        <select class="btn" id="t-len" aria-label="Durée du minuteur">
+          <option value="3">3 min</option>
+          <option value="5" selected>5 min</option>
+          <option value="10">10 min</option>
+          <option value="15">15 min</option>
+        </select>
+      </div>
+      <p class="votes-left"><strong id="votes-left">3</strong><span id="votes-label">votes restants</span></p>
+      <details class="peers" id="peers" hidden>
+        <summary id="peers-sum">0 connecté</summary>
+        <ul id="peers-list"></ul>
+      </details>
+      <span class="spacer"></span>
+      <button class="btn" id="sort" type="button" aria-pressed="false">Trier par votes</button>
+      <button class="btn solid" id="pub-all" type="button">Tout publier</button>
+      <button class="btn" id="copy" type="button">Copier le lien</button>
+      <button class="btn" id="export" type="button">Exporter</button>
+      <button class="btn" id="rename" type="button">Mon nom</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <main class="board" id="board"></main>
+
+    <section class="actions" aria-labelledby="h-actions">
+      <h2 id="h-actions">Grimoire des actions</h2>
+      <form class="act-form" id="act-form">
+        <input type="text" id="act-text" maxlength="200" placeholder="Action à mener avant la prochaine rétro" aria-label="Nouvelle action">
+        <input type="text" id="act-owner" maxlength="40" placeholder="Responsable" aria-label="Responsable de l'action">
+        <button class="btn solid" type="submit" id="act-add">Ajouter</button>
+      </form>
+      <div class="acts" id="acts"></div>
+    </section>
+  </div>
+</div>
+
+<dialog id="who" aria-labelledby="who-title">
+  <form id="who-form">
+    <div>
+      <h2 id="who-title">Ton nom pour ce board</h2>
+      <p>Choisis ce que l'équipe verra dans la liste des connectés. Tu peux laisser vide.</p>
+    </div>
+    <input type="text" id="who-name" maxlength="24" placeholder="Ton nom ou un pseudo" autocomplete="off" aria-label="Ton nom">
+    <label class="check"><input type="checkbox" id="who-show"><span>Afficher mon nom sur les post-its que je publie (sinon ils restent anonymes)</span></label>
+    <button class="btn solid" type="submit">Entrer dans la crypte</button>
+  </form>
+</dialog>
+</body>
+</html>
